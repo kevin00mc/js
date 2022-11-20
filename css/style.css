@@ -1,0 +1,60 @@
+body {
+    background-color: rgb(182, 182, 182);
+}
+
+.wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cmenu {
+    padding-right: 10px;
+    width: 790px;
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    background-color: #f0f0f0;
+}
+
+.pmenu {
+    padding-left: 10px;
+    width: 790px;
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+}
+
+
+.jmenu {
+    width: 800px;
+    height: 100px;
+    padding-top: 25px;
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f0f0f0;
+}
+
+.pchoose {
+    width: 800px;
+    padding-top: 5px;
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    /* flex-direction: column; */
+    /* align-items: center; */
+    justify-content: center;
+    
+}
+
+button {
+    height: 100px;
+    width: 100px;
+}
