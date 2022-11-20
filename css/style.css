@@ -1,3 +1,7 @@
+p {
+    margin: 0;
+}
+
 body {
     background-color: rgb(182, 182, 182);
 }
@@ -9,6 +13,7 @@ body {
 }
 
 .cmenu {
+    margin: 0;
     padding-right: 10px;
     width: 790px;
     font-size: 20px;
