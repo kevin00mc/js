@@ -37,7 +37,7 @@ body {
 
 .jmenu {
     width: 800px;
-    height: 700px;
+    height: 70px;
     padding-top: 25px;
     font-size: 20px;
     font-weight: bold;
@@ -60,6 +60,7 @@ body {
 }
 
 button {
-    height: 100px;
-    width: 100px;
+    font-size: 15px;
+    height: 40px;
+    width: 150px;
 }
