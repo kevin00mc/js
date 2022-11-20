@@ -16,7 +16,7 @@ body {
     margin: 0;
     padding-right: 10px;
     width: 790px;
-    font-size: 20px;
+    font-size: 15px;
     font-weight: bold;
     display: flex;
     flex-direction: column;
@@ -27,7 +27,7 @@ body {
 .pmenu {
     padding-left: 10px;
     width: 790px;
-    font-size: 20px;
+    font-size: 15px;
     font-weight: bold;
     display: flex;
     flex-direction: column;
@@ -37,7 +37,7 @@ body {
 
 .jmenu {
     width: 800px;
-    height: 100px;
+    height: 700px;
     padding-top: 25px;
     font-size: 20px;
     font-weight: bold;
