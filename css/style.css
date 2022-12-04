@@ -19,7 +19,7 @@ body {
     font-size: 15px;
     font-weight: bold;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-end;
     background-color: #f0f0f0;
 }
@@ -30,10 +30,35 @@ body {
     font-size: 15px;
     font-weight: bold;
     display: flex;
+    flex-direction: row;
+    background-color: #ffffff;
+}
+
+.cvar {
+    /* padding-left: 600px; */
+    padding-right: 600px;
+    height: 100px;
+    width: 100px;
+    font-size: 15px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.pvar {
+    padding-left: 500px;
+    width: 100px;
+    font-size: 15px;
+    font-weight: bold;
+    display: flex;
     flex-direction: column;
     background-color: #ffffff;
 }
 
+.playerimg {
+    padding-left: 10px;
+}
 
 .jmenu {
     width: 800px;
@@ -63,4 +88,10 @@ button {
     font-size: 15px;
     height: 40px;
     width: 150px;
+}
+
+.leveltitle {
+    font-size: 20px;
+    display: flex;
+    align-items: center;
 }

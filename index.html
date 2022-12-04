@@ -29,25 +29,29 @@
             c_guard = 0
             p_tame = 0
             c_tame = 0
-            caction = ""
-            result = 0
+            caction = 0
+            result = ""
             level = 0 
             level1attackmode = false
             display()
+            fdisplay()
         }
 
         function display() {
-            document.getElementById("ctame").innerHTML ="COM tame: "+ c_tame
-            document.getElementById("ptame").innerHTML ="P tame: "+ p_tame
-            document.getElementById("cguard").innerHTML ="COM guard: "+ c_guard
-            document.getElementById("pguard").innerHTML ="P guard: "+ p_guard
+            document.getElementById("ctame").innerHTML ="タメ: "+ c_tame
+            document.getElementById("ptame").innerHTML ="タメ: "+ p_tame
+            document.getElementById("cguard").innerHTML ="ガード: "+ c_guard
+            document.getElementById("pguard").innerHTML ="ガード: "+ p_guard
             document.getElementById("pguardbutton").disabled = p_guard >= 3
             document.getElementById("a1").disabled = p_tame < 1
             document.getElementById("a2").disabled = p_tame < 3
             document.getElementById("a3").disabled = p_tame < 9
-            document.getElementById("caction").innerHTML ="COMは "+ caction + " をくりだした"
+            document.getElementById("caction").innerHTML ="MC社員は "+ caction + " をくりだした"
             document.getElementById("result").innerHTML = result
+        }
 
+        function fdisplay() {
+            document.getElementById("caction").innerHTML ="▼MC社員は勝負をしかけてきた!"
         }
 
         function setlevel(l){
@@ -61,17 +65,17 @@
             // 2の場合はCの勝ち
             if (p_action==="tame") {
                 if (c_action==="tame" || c_action==="guard") {
-                    return 0
+                    return "次はどうする？"
                 } else {
-                    return 2
+                    return "YOU DIED"
                 }
             }
 
             if (p_action==="guard") {
                 if (c_action==="a3") {
-                    return 2
+                    return "YOU DIED"
                 } else {
-                    return 0
+                    return "次はどうする？"
                 }
             }
 
@@ -79,27 +83,27 @@
                 if (c_action==="tame") {
                     return "YOU WIN"
                 } else if(c_action==="guard" || c_action==="a1"){
-                    return 0
+                    return "次はどうする？"
                 } else {
-                    return 2
+                    return "YOU DIED"
                 }
             }
 
             if (p_action==="a2") {
                 if (c_action==="tame" || c_action==="a1") {
-                    return 1
+                    return "YOU WIN"
                 } else if(c_action==="guard" || c_action==="a2"){
-                    return 0
+                    return "次はどうする？"
                 } else {
-                    return 2
+                    return "YOU DIED"
                 }
             }
 
             if (p_action==="a3") {
-                if (c_action==="a3") {
-                    return 0
+                if (c_action==="a3" || c_action==="天焦がす滅亡の光") {
+                    return "次はどうする？"
                 } else {
-                    return 1
+                    return "YOU WIN"
                 }
             }
         }
@@ -142,8 +146,20 @@
             }
 
             result = judge(paction,caction)
-            display()
-            turn +=1
+               turn +=1 
+
+            if (turn === 0) {
+                fdisplay()
+            } else {
+                display()
+            }
+            
+            // if (result === 0) {
+            //     return ""
+            // } else { 
+            //     mdisplay() }
+
+        
         }
         function getCAction(paction) {
             // console.log(level)
@@ -175,8 +191,23 @@
                         return "guard"
                     }
                 }
+            } else if(level ===3) {
+                if (turn===0) {
+                    return "tame"
+                } else if (turn >= 1) {
+                    if (c_tame === 9) {
+                        return "天焦がす滅亡の光"
+                    } else if(paction === "tame" || paction === "guard"){
+                        return "tame"
+                    } else if(c_guard >= 3) {
+                        return "a1"
+                    } else{
+                        return "guard"
+                    }    
+                }
+                }
             }
-        }
+        
 function selectactions(actions) {
     return actions[Math.floor( Math.random() * actions.length)]
 }
@@ -186,24 +217,36 @@ function selectactions(actions) {
   <body>
     <div class="wrap">
         <div class="levelchoose">
-            <button onclick="setlevel(0);"> level 0</button>
-            <button onclick="setlevel(1);"> level 1</button>
+            <div class="leveltitle">▼対戦相手を選んでください</div>
+            
+            <h1></h1>
+            <button onclick="setlevel(0);"> 新人</button>
+            <button onclick="setlevel(1);"> 若手</button>
+            <button onclick="setlevel(1);"> MGR</button>
+            <button onclick="setlevel(3);"> 部長</button>
+
             <!-- <button onclick="reset()">
                 試合開始
             </button> -->
         </div>
         
         <div class="cmenu">
-            COM
+
+            <div class="cvar">
+            MC社員
             <p id="ctame"></p>
             <p id="cguard"></p>
+            </div>
             <img id="comimg" src="./img/COM.png" alt="" height="100">
         </div>
         <div class="pmenu">
-            PLAYER
-            <p id="pguard"></p>
-            <p id="ptame"></p>
             <img id="playerimg" src="./img/PLAYER.png" alt="" width="150" height="100">
+            <div class="pvar">
+                PLAYER
+                <p id="pguard"></p>
+                <p id="ptame"></p>
+            </div>
+
         </div>
         <div class="jmenu">
             <div id="caction"></div>
@@ -211,13 +254,12 @@ function selectactions(actions) {
         </div>
 
         <div class="pchoose">
-            <button id="a1" onclick="action('a1');"> a1</button>
-            <button id="a2" onclick="action('a2');"> a2</button>
-            <button id="a3" onclick="action('a3');"> a3</button>
-            <button onclick="action('tame');"> tame</button>
-            <button  id="pguardbutton" onclick="action('guard');"> guard</button>
-        </div>
-        0=続行、1=勝ち、2=負け 
+            <button id="a1" onclick="action('a1');"> 申立書</button>
+            <button id="a2" onclick="action('a2');"> ゴルフ</button>
+            <button id="a3" onclick="action('a3');"> 合コン</button>
+            <button onclick="action('tame');"> タメ</button>
+            <button  id="pguardbutton" onclick="action('guard');"> ガード</button>
+        </div> 
 
     </div>
   </body>
